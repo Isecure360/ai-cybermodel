@@ -1,0 +1,57 @@
+phishing-detector/
+  README.md
+  pyproject.toml            # or requirements.txt (either works)
+  .gitignore
+
+  data/                     # optional: keep empty in git
+    raw/
+    processed/
+
+  notebooks/
+    00_scratch/             # broken experiments live here
+    10_eda.ipynb
+    20_feature_dev.ipynb
+    30_training.ipynb
+    40_eval.ipynb
+
+  src/
+    phishing_detector/
+      __init__.py
+
+      config.py             # constants, paths, feature lists
+      logging_config.py
+
+      features/
+        __init__.py
+        url_features.py     # URL-only feature extraction
+        html_features.py    # optional later
+        preprocess.py       # cleaning, encoding, scaling
+
+      modeling/
+        __init__.py
+        train.py
+        evaluate.py
+        predict.py
+        registry.py         # save/load artifacts
+
+      io/
+        __init__.py
+        dataset.py          # load PhiUSIIL, split, validation
+        s3.py               # (later) upload/download artifacts
+
+      api/
+        __init__.py
+        schemas.py          # Pydantic models (request/response)
+        app.py              # FastAPI handler for local test
+
+  tests/
+    test_features.py
+    test_predict.py
+
+  scripts/
+    make_dataset.py         # optional
+    train_local.py
+    run_api_local.py
+
+  artifacts/                # models, encoders, metrics (gitignored)
+  docs/

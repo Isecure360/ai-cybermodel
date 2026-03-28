@@ -1,0 +1,6 @@
+{
+    "active_model": "phishing_model_v1.pkl",
+    "feature_version": "features_v1.pkl",
+    "model_type": "url_only",
+    "version": "v1"
+}

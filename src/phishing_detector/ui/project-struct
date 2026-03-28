@@ -1,0 +1,84 @@
+ui/                           # 🌐 Streamlit UI
+│
+├── app.py                    # Main Streamlit app
+├── config.py                 # Optional: UI config (API baseURL, theming, etc.)
+├── utils.py                  # Helper functions (API calls, formatting)
+├── components/               # Custom Streamlit components
+│   ├── charts.py             # Charting / metric visualizations
+│   ├── cards.py              # UI cards for predictions, model info
+│   └── tables.py             # Tables for displaying data
+├── assets/                   # Static assets
+│   ├── logo.png
+│   ├── favicon.ico
+│   └── styles.css            # Optional custom CSS
+├── pages/                    # Optional multipage Streamlit UI
+│   ├── dashboard.py          # Metrics / ensemble visualization
+│   └── history.py            # Historical predictions / logs
+└── data/                     # Optional local cache
+    └── predictions_cache.csv # Local cache of past predictions
+
+
+
+
+
+
+Perfect, this structure gives us full flexibility for a slick, interactive UI. Here’s the plan to fill it out and make it fully functional:
+
+1️⃣ app.py – main entrypoint
+Sidebar for navigation: Prediction | History | Model Info | Dataset Upload
+Columns for:
+URL input + batch upload
+Prediction output with color-coded badge
+Calls utils.py to interact with your FastAPI endpoints:
+/api/v1/predict for predictions
+/api/v1/model-info for metadata
+Optional: expanders for feature contributions, raw API response, tooltips
+2️⃣ config.py
+API base URL (http://localhost:8000/api/v1)
+Theme colors: legit_color, phishing_color, background, etc.
+Any other UI-level configs like max batch size
+3️⃣ utils.py
+API calls: fetch prediction, fetch model info
+Data formatting: convert API JSON to Pandas DataFrame for tables
+Cache management: optional caching of historical predictions locally
+4️⃣ components/
+charts.py:
+Class distribution (pie/bar)
+Metrics visualization (F1, accuracy, precision, recall)
+Optional probability gauge for each URL
+cards.py:
+Stylized cards showing:
+Prediction result (Legit / Phishing)
+Probability with colored badge
+Model used & version
+tables.py:
+DataFrames displayed in Streamlit tables
+Support filtering, sorting, exporting CSV
+5️⃣ assets/
+logo.png for the top bar or sidebar
+favicon.ico for Streamlit browser tab
+styles.css (optional) for custom cards, colors, fonts
+6️⃣ pages/
+dashboard.py:
+Overview of recent predictions
+Ensemble stats if multiple models exist
+Charts for class distribution and model performance
+history.py:
+Table with past predictions (cached locally or pulled from API if you implement a DB)
+Export button to CSV
+7️⃣ data/
+predictions_cache.csv:
+Store past predictions for session persistence or offline access
+Columns: URL, prediction, probability, timestamp
+✅ Next Steps
+
+I can draft the full app.py first with:
+
+Beautiful sidebar
+Prediction input + batch upload
+Live results with colored badges and probability
+Calls /predict and /model-info
+
+Then we can layer in components, charts, history table, and dashboard.
+
+Do you want me to start with the full app.py first or break it into Prediction + Model Info + History pages separately?

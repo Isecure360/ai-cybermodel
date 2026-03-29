@@ -339,5 +339,3 @@ It’s a **self-evolving ML system** designed for:
 Built as a scalable ML system for real-world phishing detection.
 
 * Badges (build, version, license)
-
-Just say the word 
